@@ -3,8 +3,9 @@ const express = require('express')
 const router = express.Router()
 
 const Model = require('./users-model')
+const AuthMiddle = require('../auth/auth-middleware')
 
-router.get('/', async (req, res) => {
+router.get('/', AuthMiddle.restricted, async (req, res) => {
   const answer = await Model.find()
   res.status(200).json(answer)
 })

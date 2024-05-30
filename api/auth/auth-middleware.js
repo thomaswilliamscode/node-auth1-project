@@ -9,7 +9,26 @@ const UserModel = require('../users/users-model')
   }
 */
 function restricted(req, res, next) {
-  
+//     response:
+//   status 200
+//   [
+//     {
+//       "user_id": 1,
+//       "username": "bob"
+//     },
+//     // etc
+//   ]
+
+//   response on non-authenticated:
+//   status 401
+//   {
+//     "message": "You shall not pass!"
+//   }
+if (!req.session.user) {
+  res.status(401).json({message: 'You shall not pass!'})
+} else {
+  next()
+}
 }
 
 /*
