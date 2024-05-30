@@ -16,6 +16,7 @@ const cors = require("cors");
  */
 
 const userRouter = require('../api/users/users-router')
+const authRouter = require('../api/auth/auth-router')
 
 const server = express();
 
@@ -24,6 +25,7 @@ server.use(express.json());
 server.use(cors());
 
 server.use('/api/users', userRouter)
+server.use('/api/auth', authRouter )
 
 server.get("/", (req, res) => {
   res.json({ api: "up" });

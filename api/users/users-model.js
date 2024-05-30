@@ -12,22 +12,31 @@ async function find() {
 /**
   resolves to an ARRAY with all users that match the filter condition
  */
-function findBy(filter) {
-
+async function findBy(filter) {
+  return db('users').where(filter)
 }
 
 /**
   resolves to the user { user_id, username } with the given user_id
  */
-function findById(user_id) {
-
+async function findById(user_id) {
+//   select
+//     user_id, 
+//     username
+// from users
+// where user_id = 1;
+const [answer] = await db('users').select('user_id', 'username').where('user_id', user_id)
+return answer;
 }
 
 /**
   resolves to the newly inserted user { user_id, username }
  */
-function add(user) {
-
+async function add(user) {
+//   insert into users (username, password)
+// values('Thomas', );
+  const [newUser] = await db('users').insert(user)
+  return newUser;
 }
 
 // Don't forget to add these to the `exports` object so they can be required in other modules
