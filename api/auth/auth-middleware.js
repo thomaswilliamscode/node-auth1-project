@@ -68,7 +68,7 @@ async function checkUsernameExists(req, res, next) {
     req.user = answer
     next()
   } else {
-    res.status(401).json({message: 'Invalid credentials'})
+    res.status(401).json({message: 'invalid credentials'})
   }
 }
 
@@ -83,7 +83,7 @@ async function checkUsernameExists(req, res, next) {
 function checkPasswordLength(req, res, next) {
   const { password } = req.body
   if (!password || password.length <= 3) {
-    res.status(422).json({message: 'Password must be longer that 3 chars'})
+    res.status(422).json({message: 'Password must be longer than 3 chars'})
   } else {
     next()
   }
